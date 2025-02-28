@@ -1,0 +1,52 @@
+from dataclasses import dataclass
+from datetime import datetime
+from packaging.version import Version
+from typing import List, Optional
+from uuid import uuid4
+
+@dataclass(frozen=True)
+class PluginMetadata:
+    plugin_id: str
+    name: str
+    description: str
+    version: str
+    author: str
+    entry_point: str
+    required_python_version: str
+    last_updated: datetime
+    compatible_application_versions: Optional[List[str]] = None
+    dependencies: Optional[List[str]] = None
+    tags: Optional[List[str]] = None
+
+    def __init__(
+            self,
+            name: str,
+            description: str,
+            version: str,
+            author: str,
+            entry_point: str,
+            required_python_version: str,
+            compatible_application_versions: Optional[List[str]] = None,
+            dependencies: Optional[List[str]] = None,
+            tags: Optional[List[str]] = None
+        ):
+        object.__setattr__(self, "plugin_id", str(uuid4()))
+        object.__setattr__(self, "name", name)
+        object.__setattr__(self, "description", description)
+        object.__setattr__(self, "version", version)
+        object.__setattr__(self, "author", author)
+        object.__setattr__(self, "entry_point", entry_point)
+        object.__setattr__(self, "required_python_version", required_python_version)
+        object.__setattr__(self, "last_updated", datetime.now().replace(microsecond=0).isoformat())
+        object.__setattr__(self, "compatible_application_versions", compatible_application_versions)
+        object.__setattr__(self, "dependencies", dependencies)
+        object.__setattr__(self, "tags", tags)
+
+    def has_version_changed(self, new_version: str) -> bool:
+        return Version(self.version) != Version(new_version)
+    
+    def has_compatible_python_version(self, current_python_version: str) -> bool:
+        return current_python_version >= self.required_python_version
+
+    def has_compatible_application_version(self, application_version: str) -> bool:
+        return application_version in self.compatible_application_versions

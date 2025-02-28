@@ -1,0 +1,1 @@
+from .metadata.plugin_metadata import PluginMetadata
