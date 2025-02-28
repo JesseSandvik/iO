@@ -46,7 +46,10 @@ class PluginMetadata:
         return Version(self.version) != Version(new_version)
     
     def has_compatible_python_version(self, current_python_version: str) -> bool:
-        return current_python_version >= self.required_python_version
+        return Version(current_python_version) >= Version(self.required_python_version)
 
     def has_compatible_application_version(self, application_version: str) -> bool:
-        return application_version in self.compatible_application_versions
+        for compatible_version in self.compatible_application_versions:
+            if Version(application_version) == Version(compatible_version):
+                return True
+        return False
