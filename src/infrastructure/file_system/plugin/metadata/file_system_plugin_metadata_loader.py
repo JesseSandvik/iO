@@ -8,8 +8,8 @@ from src.infrastructure.file_system.plugin.plugin_file_system_service import Plu
 class FileSystemPluginMetadataLoader(PluginMetadataLoader):
 
     def __init__(self, plugins_root_directory: str = PluginFileSystemService.get_project_root_directory()):
+        super().__init__()
         self.plugins_root_directory = plugins_root_directory
-        self.plugin_metadata: Optional[List[PluginMetadata]] = []
 
     def __discover_plugin_configuration_files(self) -> Optional[List[str]]:
         plugin_directory = os.path.join(self.plugins_root_directory, 'plugins')
@@ -34,7 +34,7 @@ class FileSystemPluginMetadataLoader(PluginMetadataLoader):
             dependencies=plugin_configuration_file_content.get('dependencies', []),
             tags=plugin_configuration_file_content.get('tags', [])
         )
-        self.plugin_metadata.append(plugin_metadata)
+        self._add_plugin_metadata(plugin_metadata)
 
     def load(self):
         plugin_configuration_file_paths = self.__discover_plugin_configuration_files()
