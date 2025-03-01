@@ -7,11 +7,12 @@ from src.infrastructure.file_system.plugin.plugin_file_system_service import Plu
 
 class FileSystemPluginMetadataLoader(PluginMetadataLoader):
 
-    def __init__(self):
+    def __init__(self, plugins_root_directory: str = PluginFileSystemService.get_project_root_directory()):
+        self.plugins_root_directory = plugins_root_directory
         self.plugin_metadata: Optional[List[PluginMetadata]] = []
 
     def __discover_plugin_configuration_files(self) -> Optional[List[str]]:
-        plugin_directory = os.path.join(PluginFileSystemService.get_project_root_directory(), 'plugins')
+        plugin_directory = os.path.join(self.plugins_root_directory, 'plugins')
         found_plugins = []
 
         for root, dirs, files in os.walk(plugin_directory):

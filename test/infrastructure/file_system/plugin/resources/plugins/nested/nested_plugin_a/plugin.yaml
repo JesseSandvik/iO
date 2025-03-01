@@ -1,0 +1,14 @@
+name: 'Nested Plugin A'
+description: 'An example nested plugin defined as Plugin A'
+version: '1.0.0'
+author: 'John Doe'
+entry_point: 'src/app/nested/nested_plugin_a.py'
+required_python_version: '3.13.2'
+enabled: true
+tags:
+  - 'example'
+  - 'plugin'
+  - 'plugin_a'
+  - 'nested'
+  - 'nested_plugin'
+  - 'nested_plugin_a'
