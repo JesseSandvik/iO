@@ -42,7 +42,7 @@ class PluginMetadata:
         object.__setattr__(self, "dependencies", dependencies)
         object.__setattr__(self, "tags", tags)
 
-    def has_version_changed(self, new_version: str) -> bool:
+    def version_changed(self, new_version: str) -> bool:
         return Version(self.version) != Version(new_version)
     
     def has_compatible_python_version(self, current_python_version: str) -> bool:

@@ -23,20 +23,20 @@ class TestPluginMetadata(unittest.TestCase):
         last_updated = self.plugin_metadata.last_updated
         self.assertTrue(last_updated)
 
-    def test_has_version_changed_should_return_true_for_older_version(self):
-        actual = self.plugin_metadata.has_version_changed("0.9.0")
+    def test_version_changed_should_return_true_for_older_version(self):
+        actual = self.plugin_metadata.version_changed("0.9.0")
         self.assertTrue(actual)
 
-    def test_has_version_changed_should_return_true_for_beta_version(self):
-        actual = self.plugin_metadata.has_version_changed("1.0.0-beta")
+    def test_version_changed_should_return_true_for_beta_version(self):
+        actual = self.plugin_metadata.version_changed("1.0.0-beta")
         self.assertTrue(actual)
 
-    def test_has_version_changed_should_return_true_for_newer_version(self):
-        actual = self.plugin_metadata.has_version_changed("1.0.1")
+    def test_version_changed_should_return_true_for_newer_version(self):
+        actual = self.plugin_metadata.version_changed("1.0.1")
         self.assertTrue(actual)
 
-    def test_has_version_changed_should_return_false_for_same_version(self):
-        actual = self.plugin_metadata.has_version_changed(self.plugin_metadata.version)
+    def test_version_changed_should_return_false_for_same_version(self):
+        actual = self.plugin_metadata.version_changed(self.plugin_metadata.version)
         self.assertFalse(actual)
 
     def test_has_compatible_python_version_should_return_false_for_older_version(self):

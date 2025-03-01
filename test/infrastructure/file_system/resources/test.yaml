@@ -1,0 +1,9 @@
+first_key: 'value 1'
+second_key: 'value 2'
+third_key: 3
+fourth_key: 4.0
+fifth_key: true
+sixth_key: false
+seventh_key: null
+eighth_key: [1, 2, 3]
+ninth_key: {a: 1, b: 2, c: 3}
