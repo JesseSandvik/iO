@@ -7,5 +7,5 @@ class TestFileSystemPluginMetadataLoader(unittest.TestCase):
         self.loader = FileSystemPluginMetadataLoader()
 
     def test_load(self):
-        metadata = self.loader.load()
-        print('==> ran')
+        self.loader.load()
+        print(self.loader.plugin_metadata)

@@ -1,0 +1,14 @@
+name: 'Bot Plugin A'
+description: 'An example Bot plugin defined as Plugin A'
+version: '1.0.0'
+author: 'John Doe'
+entry_point: 'src/app/bot/bot_plugin_a.py'
+required_python_version: '3.13.2'
+enabled: true
+tags:
+  - 'example'
+  - 'plugin'
+  - 'plugin_a'
+  - 'bot'
+  - 'bot_plugin'
+  - 'bot_plugin_a'

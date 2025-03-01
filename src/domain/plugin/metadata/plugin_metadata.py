@@ -14,6 +14,7 @@ class PluginMetadata:
     entry_point: str
     required_python_version: str
     last_updated: datetime
+    user_enabled: bool = False
     compatible_application_versions: Optional[List[str]] = None
     dependencies: Optional[List[str]] = None
     tags: Optional[List[str]] = None
@@ -26,6 +27,7 @@ class PluginMetadata:
             author: str,
             entry_point: str,
             required_python_version: str,
+            user_enabled: bool = False,
             compatible_application_versions: Optional[List[str]] = None,
             dependencies: Optional[List[str]] = None,
             tags: Optional[List[str]] = None
@@ -37,6 +39,7 @@ class PluginMetadata:
         object.__setattr__(self, "author", author)
         object.__setattr__(self, "entry_point", entry_point)
         object.__setattr__(self, "required_python_version", required_python_version)
+        object.__setattr__(self, "user_enabled", user_enabled)
         object.__setattr__(self, "last_updated", datetime.now().replace(microsecond=0).isoformat())
         object.__setattr__(self, "compatible_application_versions", compatible_application_versions)
         object.__setattr__(self, "dependencies", dependencies)
