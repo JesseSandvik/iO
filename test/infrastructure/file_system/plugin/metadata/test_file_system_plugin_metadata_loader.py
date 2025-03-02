@@ -30,5 +30,4 @@ class TestFileSystemPluginMetadataLoader(unittest.TestCase):
         )
         loader = FileSystemPluginMetadataLoader(test_plugins_path)
         loader.load()
-        print(loader.get_all_plugin_metadata())
         self.assertEqual(len(loader.get_all_plugin_metadata().keys()), 3)

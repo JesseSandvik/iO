@@ -24,11 +24,11 @@ class FileSystemPluginMetadataLoader(PluginMetadataLoader):
     def __load_plugin_metadata(self, plugin_configuration_file_path: str) -> None:
         plugin_configuration_file_content = PluginFileSystemService.get_yaml_file_contents(plugin_configuration_file_path)
         plugin_metadata = PluginMetadata(
+            entry_point=os.path.join(os.path.dirname(plugin_configuration_file_path), plugin_configuration_file_content.get('entry_point')),
             name=plugin_configuration_file_content.get('name'),
             description=plugin_configuration_file_content.get('description'),
             version=plugin_configuration_file_content.get('version'),
             author=plugin_configuration_file_content.get('author'),
-            entry_point=os.path.join(os.path.dirname(plugin_configuration_file_path), plugin_configuration_file_content.get('entry_point')),
             required_python_version=plugin_configuration_file_content.get('required_python_version'),
             compatible_application_versions=plugin_configuration_file_content.get('compatible_application_versions', []),
             dependencies=plugin_configuration_file_content.get('dependencies', []),

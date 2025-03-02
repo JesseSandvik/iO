@@ -2,16 +2,14 @@ from dataclasses import dataclass
 from datetime import datetime
 from packaging.version import Version
 from typing import List, Optional
-from uuid import uuid4
 
 @dataclass(frozen=True)
 class PluginMetadata:
-    plugin_id: str
+    entry_point: str
     name: str
     description: str
     version: str
     author: str
-    entry_point: str
     required_python_version: str
     last_updated: datetime
     user_enabled: bool = False
@@ -21,23 +19,22 @@ class PluginMetadata:
 
     def __init__(
             self,
+            entry_point: str,
             name: str,
             description: str,
             version: str,
             author: str,
-            entry_point: str,
             required_python_version: str,
             user_enabled: bool = False,
             compatible_application_versions: Optional[List[str]] = None,
             dependencies: Optional[List[str]] = None,
             tags: Optional[List[str]] = None
         ):
-        object.__setattr__(self, "plugin_id", str(uuid4()))
+        object.__setattr__(self, "entry_point", entry_point)
         object.__setattr__(self, "name", name)
         object.__setattr__(self, "description", description)
         object.__setattr__(self, "version", version)
         object.__setattr__(self, "author", author)
-        object.__setattr__(self, "entry_point", entry_point)
         object.__setattr__(self, "required_python_version", required_python_version)
         object.__setattr__(self, "user_enabled", user_enabled)
         object.__setattr__(self, "last_updated", datetime.now().replace(microsecond=0).isoformat())
